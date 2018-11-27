@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "902918917461",
+    "firebase_url": "https://newsgoround-3bbcd.firebaseio.com",
+    "project_id": "newsgoround-3bbcd",
+    "storage_bucket": "newsgoround-3bbcd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902918917461:android:cb833f8da1ce01ca",
+        "android_client_info": {
+          "package_name": "com.example.dipto.newsgoround"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "902918917461-1uu29hkdkjqh8po9j3dd8csma7vq68ko.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dipto.newsgoround",
+            "certificate_hash": "bb35433f70b63e9c88e9174dc88802bd2a5afef9"
+          }
+        },
+        {
+          "client_id": "902918917461-ilrj8re4q78b5udv2c0tene7jj01mqa3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUbZ7ScyTZ_FRs0lrHxp6gyOMC7yZ6l3U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "902918917461-ilrj8re4q78b5udv2c0tene7jj01mqa3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
