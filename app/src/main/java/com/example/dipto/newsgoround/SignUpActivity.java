@@ -26,7 +26,7 @@ public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
 
-    //can be remove anytime
+    //can be removed anytime
     private ProgressDialog progressDialog;
 
     @Override
