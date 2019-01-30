@@ -1,4 +1,4 @@
-package com.example.dipto.newsgoround.navigation_drawer_fragment_classes;
+package com.example.dipto.newsgoround.FragmentsClasses;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,11 +10,20 @@ import android.view.ViewGroup;
 
 import com.example.dipto.newsgoround.R;
 
-public class ContactFragment extends Fragment {
+public class LiveScoreTab extends Fragment {
+
+    View view;
+
+
+    public LiveScoreTab(){
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.contact_navigation_drawer_fragment, container, false);
+
+        view = inflater.inflate(R.layout.live_score_tab_layout  , container , false);
 
 
         return view;

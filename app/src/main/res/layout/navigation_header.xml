@@ -27,8 +27,8 @@
         android:textStyle="bold"
         android:gravity="left"
         android:paddingBottom="4dp"
-        android:id="@+id/username"
-        android:layout_above="@+id/email"
+        android:id="@+id/username_navigation_drawer"
+        android:layout_above="@+id/user_email_navigation_drawer"
         android:layout_alignLeft="@+id/profile_image"
         android:layout_alignStart="@+id/profile_image" />
 
@@ -36,13 +36,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="user@host.com"
-        android:id="@+id/email"
+        android:id="@+id/user_email_navigation_drawer"
         android:gravity="left"
         android:layout_marginBottom="8dp"
         android:textSize="15sp"
         android:textColor="#22fff7"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/username"
-        android:layout_alignStart="@+id/username" />
+        android:layout_alignLeft="@+id/username_navigation_drawer"
+        android:layout_alignStart="@+id/username_navigation_drawer" />
 
 </RelativeLayout>
