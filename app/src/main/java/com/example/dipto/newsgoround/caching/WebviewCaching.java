@@ -1,10 +1,11 @@
 package com.example.dipto.newsgoround.caching;
 
+
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-public class WebviewCaching {
-    public static final void cacheWebvie(WebView webView, WebSettings webSettings) {
+public final class WebviewCaching {
+    public static final void cacheWebview(WebView webView, WebSettings webSettings) {
         webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
         webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         webView.getSettings().setAppCacheEnabled(true);
@@ -14,5 +15,6 @@ public class WebviewCaching {
         webSettings.setSavePassword(true);
         webSettings.setSaveFormData(true);
         webSettings.setEnableSmoothTransition(true);
+
     }
 }

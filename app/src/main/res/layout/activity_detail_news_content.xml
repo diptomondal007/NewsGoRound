@@ -12,12 +12,11 @@
 
     android:layout_height="match_parent"
 
-    android:fitsSystemWindows="true"
-
     android:background="@color/colorBackground"
 
-    tools:context=".DetailNewsContentActivity">
+    android:fitsSystemWindows="true"
 
+    tools:context=".DetailNewsContentActivity">
 
 
     <android.support.design.widget.AppBarLayout
@@ -33,14 +32,11 @@
         android:theme="@style/MyAppBarLayoutTheme">
 
 
-
         <android.support.design.widget.CollapsingToolbarLayout
 
             android:id="@+id/collapsing_toolbar"
 
             android:layout_width="match_parent"
-
-            app:titleEnabled="false"
 
             android:layout_height="match_parent"
 
@@ -48,8 +44,9 @@
 
             app:contentScrim="?attr/colorPrimary"
 
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
 
+            app:titleEnabled="false">
 
 
             <ImageView
@@ -64,21 +61,16 @@
 
                 android:scaleType="centerCrop"
 
-                app:layout_collapseMode="parallax"
-
                 android:transitionName="img"
 
-                tools:ignore="UnusedAttribute" />
+                app:layout_collapseMode="parallax"
 
+                tools:ignore="UnusedAttribute" />
 
 
             <RelativeLayout
 
                 android:id="@+id/headerContent"
-
-                app:layout_collapseMode="pin"
-
-                android:fitsSystemWindows="true"
 
                 android:layout_width="match_parent"
 
@@ -86,42 +78,42 @@
 
                 android:layout_centerInParent="true"
 
-                android:orientation="vertical">
+                android:fitsSystemWindows="true"
 
+                android:orientation="vertical"
+
+                app:layout_collapseMode="pin">
 
 
                 <ImageView
-
-                    android:src="@drawable/top_shadow"
-
-                    android:scaleType="centerCrop"
 
                     android:layout_width="match_parent"
 
-                    android:layout_height="70dp" />
+                    android:layout_height="70dp"
 
+                    android:scaleType="centerCrop"
+
+                    android:src="@drawable/top_shadow" />
 
 
                 <ImageView
-
-                    android:layout_alignParentBottom="true"
-
-                    android:src="@drawable/bottom_shadow"
 
                     android:id="@+id/img2"
 
+                    android:layout_width="match_parent"
+
+                    android:layout_height="80dp"
+
                     android:layout_alignBottom="@id/img"
+
+                    android:layout_alignParentBottom="true"
 
                     android:scaleType="centerCrop"
 
-                    android:layout_width="match_parent"
-
-                    android:layout_height="80dp" />
-
+                    android:src="@drawable/bottom_shadow" />
 
 
             </RelativeLayout>
-
 
 
             <android.support.v7.widget.Toolbar
@@ -145,19 +137,17 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
 
-
                 <LinearLayout
 
                     android:id="@+id/title_appbar"
 
-                    android:clickable="false"
-
                     android:layout_width="wrap_content"
 
-                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
 
-                    android:layout_height="wrap_content">
+                    android:clickable="false"
 
+                    android:orientation="vertical">
 
 
                     <TextView
@@ -166,22 +156,21 @@
 
                         style="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Title"
 
-                        android:text="News for you"
-
-                        android:textSize="18dp"
-
                         android:layout_width="match_parent"
 
                         android:layout_height="wrap_content"
 
-                        android:maxLines="1"
-
                         android:drawablePadding="10dp"
+
+                        android:ellipsize="end"
+
+                        android:maxLines="1"
 
                         android:singleLine="true"
 
-                        android:ellipsize="end"/>
+                        android:text="News for you"
 
+                        android:textSize="18dp" />
 
 
                     <TextView
@@ -190,108 +179,101 @@
 
                         style="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
 
-                        android:text="Subtitle"
-
-                        android:textSize="12dp"
-
                         android:layout_width="match_parent"
 
                         android:layout_height="wrap_content"
 
-                        android:maxLines="1"
-
                         android:drawablePadding="10dp"
+
+                        android:ellipsize="end"
+
+                        android:maxLines="1"
 
                         android:singleLine="true"
 
-                        android:ellipsize="end"/>
+                        android:text="Subtitle"
 
+                        android:textSize="12dp" />
 
 
                 </LinearLayout>
 
 
-
             </android.support.v7.widget.Toolbar>
-
 
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
 
-
     </android.support.design.widget.AppBarLayout>
-
 
 
     <android.support.v4.widget.NestedScrollView
 
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-
-        android:fitsSystemWindows="true"
-
         android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
 
         android:background="@color/colorBackground"
 
-        android:layout_height="match_parent">
+        android:fitsSystemWindows="true"
+
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
 
-            android:orientation="vertical"
-
             android:layout_width="match_parent"
 
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
 
+            android:orientation="vertical">
 
 
             <android.support.v7.widget.CardView
 
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-
                 android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
 
                 app:cardCornerRadius="0dp"
 
                 app:cardElevation="@dimen/cardview_default_elevation"
 
-                android:layout_height="wrap_content">
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                 <RelativeLayout
 
-                    android:layout_marginBottom="20dp"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
 
                     android:layout_marginTop="20dp"
 
+                    android:layout_marginBottom="20dp"
+
                     android:paddingLeft="16dp"
 
-                    android:paddingRight="16dp"
-
-                    android:layout_width="match_parent"
-
-                    android:layout_height="wrap_content">
+                    android:paddingRight="16dp">
 
                     <TextView
 
                         android:id="@+id/title"
 
-                        android:textColor="@color/colorTextTitle"
-
-                        android:textStyle="bold"
-
-                        android:fontFamily="sans-serif-light"
-
-                        android:textSize="19sp"
-
-                        android:text="Title of News"
-
                         android:layout_width="match_parent"
 
                         android:layout_height="wrap_content"
 
-                        />
+                        android:fontFamily="sans-serif-light"
 
+                        android:text="Title of News"
+
+                        android:textColor="@color/colorTextTitle"
+
+                        android:textSize="19sp"
+
+                        android:textStyle="bold"
+
+                        />
 
 
                     <TextView
@@ -306,40 +288,36 @@
 
                         android:layout_marginTop="10dp"
 
-                        android:maxLines="1"
-
                         android:drawablePadding="10dp"
-
-                        android:singleLine="true"
 
                         android:ellipsize="end"
 
+                        android:maxLines="1"
+
+                        android:singleLine="true"
+
                         android:text="a time ago" />
-
-
 
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>
 
 
-
             <android.support.v7.widget.CardView
-
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-
-                android:layout_marginTop="12dp"
-
-                android:layout_marginBottom="20dp"
 
                 android:layout_width="match_parent"
 
                 android:layout_height="wrap_content"
 
+                android:layout_marginTop="12dp"
+
+                android:layout_marginBottom="20dp"
+
+                app:cardCornerRadius="0dp"
+
                 app:cardElevation="@dimen/cardview_default_elevation"
 
-                app:cardCornerRadius="0dp">
-
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
                 <RelativeLayout
@@ -349,89 +327,78 @@
                     android:layout_height="match_parent">
 
 
-
                     <ProgressBar
 
-                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-
                         android:id="@+id/progress_bar"
+
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
 
                         android:layout_marginTop="50dp"
 
                         android:layout_marginBottom="70dp"
 
-                        android:layout_width="match_parent"
-
-                        android:layout_height="wrap_content" />
-
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
                     <WebView
-
-                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
                         android:id="@+id/webView"
 
                         android:layout_width="match_parent"
 
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent"
 
-
-
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
                 </RelativeLayout>
 
 
-
             </android.support.v7.widget.CardView>
-
 
 
         </LinearLayout>
 
 
-
     </android.support.v4.widget.NestedScrollView>
-
 
 
     <FrameLayout
 
         android:id="@+id/date_behavior"
 
-        app:layout_anchor="@+id/appbar"
+        android:layout_width="wrap_content"
 
-        app:behavior_autoHide="true"
-
-        android:adjustViewBounds="true"
-
-        app:layout_anchorGravity="right|end|bottom"
-
-        android:clickable="false"
+        android:layout_height="wrap_content"
 
         android:layout_below="@id/img"
 
-        android:background="@drawable/round_white"
-
-        android:layout_width="wrap_content"
-
-        android:padding="5dp"
+        android:layout_alignParentRight="true"
 
         android:layout_alignParentBottom="true"
-
-        android:layout_alignParentRight="true"
 
         android:layout_marginRight="20dp"
 
         android:layout_marginBottom="408dp"
 
-        android:layout_height="wrap_content">
+        android:adjustViewBounds="true"
+
+        android:background="@drawable/round_white"
+
+        android:clickable="false"
+
+        android:padding="5dp"
+
+        app:behavior_autoHide="true"
+
+        app:layout_anchor="@+id/appbar"
+
+        app:layout_anchorGravity="right|end|bottom">
 
         <ImageView
 
-
-            android:src="@drawable/ic_date"
 
             android:layout_width="18dp"
 
@@ -439,13 +406,17 @@
 
             android:layout_marginLeft="5dp"
 
-            android:layout_marginRight="5dp"/>
+            android:layout_marginRight="5dp"
+
+            android:src="@drawable/ic_date" />
 
         <TextView
 
-            android:textColor="#606060"
-
             android:id="@+id/date"
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
 
             android:layout_marginLeft="27dp"
 
@@ -453,12 +424,9 @@
 
             android:text="01 January 1990"
 
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content" />
+            android:textColor="#606060" />
 
     </FrameLayout>
-
 
 
 </android.support.design.widget.CoordinatorLayout>

@@ -9,9 +9,11 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -44,6 +46,8 @@ public class DetailNewsContentActivity extends AppCompatActivity implements AppB
     private String mUrl, mImg, mTitle, mDate, mSource, mAuthor;
 
     ProgressBar progressBar;
+    private WebView webView;
+    private WebSettings webSettings;
 
 
     @Override
@@ -62,7 +66,7 @@ public class DetailNewsContentActivity extends AppCompatActivity implements AppB
 
         appBarLayout = findViewById(R.id.appbar);
         appBarLayout.addOnOffsetChangedListener(this);
-
+        webView = findViewById(R.id.webView);
         date_behavior = findViewById(R.id.date_behavior);
         titleAppBar = findViewById(R.id.title_appbar);
         imageView = findViewById(R.id.backdrop);
@@ -110,8 +114,8 @@ public class DetailNewsContentActivity extends AppCompatActivity implements AppB
 
 
     public void initWebView(String url) {
-        final WebView webView = findViewById(R.id.webView);
-        WebSettings webSettings = webView.getSettings();
+        //webView = findViewById(R.id.webView);
+        webSettings = webView.getSettings();
         webView.getSettings().setLoadsImagesAutomatically(true);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
@@ -119,18 +123,8 @@ public class DetailNewsContentActivity extends AppCompatActivity implements AppB
         webView.getSettings().setBuiltInZoomControls(true);
         webView.getSettings().setDisplayZoomControls(false);
 
-        //improve webView performance
-//        webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
-//        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-//        webView.getSettings().setAppCacheEnabled(true);
-//        webSettings.setDomStorageEnabled(true);
-//        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
-//        webSettings.setUseWideViewPort(true);
-//        webSettings.setSavePassword(true);
-//        webSettings.setSaveFormData(true);
-//        webSettings.setEnableSmoothTransition(true);
-        WebviewCaching.cacheWebvie(webView, webSettings);
-        // TODO: webview caching
+
+        // TODO: cache
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl(url);
@@ -203,6 +197,11 @@ public class DetailNewsContentActivity extends AppCompatActivity implements AppB
                 Toast.makeText(DetailNewsContentActivity.this, "Sorry...\nCannot be Shared", Toast.LENGTH_SHORT).show();
 
             }
+
+        } else if (id == R.id.save_for_future) {
+            initWebView(mUrl);
+            WebviewCaching.cacheWebview(webView, webSettings);
+            Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
         }
 
         return super.onOptionsItemSelected(item);

@@ -3,7 +3,9 @@
     package="com.example.dipto.newsgoround">
 
     <uses-permission android:name="android.permission.INTERNET" />
-   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    hardwareAccelerated="true"
+
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
@@ -35,8 +37,8 @@
             android:name=".SportsSettingsActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:name=".ContactUsActivity"></activity>
+            android:name=".ContactUsActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>
