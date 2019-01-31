@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
@@ -29,19 +30,20 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.example.dipto.newsgoround.caching.WebviewCaching;
 
 public class DetailNewsContentActivity extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
 
     private ImageView imageView;
-    private TextView appBar_tiitle , appBar_subtitle, date  , time , title ;
+    private TextView appBar_tiitle, appBar_subtitle, date, time, title;
     private boolean isHideToolbarView = false;
-    private FrameLayout date_behavior ;
+    private FrameLayout date_behavior;
     private LinearLayout titleAppBar;
     private AppBarLayout appBarLayout;
     private Toolbar toolbar;
-    private String mUrl , mImg , mTitle , mDate , mSource , mAuthor;
+    private String mUrl, mImg, mTitle, mDate, mSource, mAuthor;
 
-     ProgressBar progressBar;
+    ProgressBar progressBar;
 
 
     @Override
@@ -62,7 +64,7 @@ public class DetailNewsContentActivity extends AppCompatActivity implements AppB
         appBarLayout.addOnOffsetChangedListener(this);
 
         date_behavior = findViewById(R.id.date_behavior);
-        titleAppBar  =findViewById(R.id.title_appbar);
+        titleAppBar = findViewById(R.id.title_appbar);
         imageView = findViewById(R.id.backdrop);
         appBar_tiitle = findViewById(R.id.title_on_appbar);
         appBar_subtitle = findViewById(R.id.subtitle_on_appbar);
@@ -95,27 +97,40 @@ public class DetailNewsContentActivity extends AppCompatActivity implements AppB
         title.setText(mTitle);
 
         String author = null;
-        if(mAuthor != null || mAuthor != ""){
+        if (mAuthor != null || mAuthor != "") {
             mAuthor = " \u2022 " + mAuthor;
-        }else{
+        } else {
             author = "";
         }
 
-        time.setText(mSource + author +" \u2022 "+Utils.DateToTimeFormat(mDate));
+        time.setText(mSource + author + " \u2022 " + Utils.DateToTimeFormat(mDate));
 
         initWebView(mUrl);
     }
 
 
-    public void initWebView(String url)
-    {
-        final WebView  webView = findViewById(R.id.webView);
+    public void initWebView(String url) {
+        final WebView webView = findViewById(R.id.webView);
+        WebSettings webSettings = webView.getSettings();
         webView.getSettings().setLoadsImagesAutomatically(true);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setSupportZoom(true);
         webView.getSettings().setBuiltInZoomControls(true);
         webView.getSettings().setDisplayZoomControls(false);
+
+        //improve webView performance
+//        webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
+//        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+//        webView.getSettings().setAppCacheEnabled(true);
+//        webSettings.setDomStorageEnabled(true);
+//        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+//        webSettings.setUseWideViewPort(true);
+//        webSettings.setSavePassword(true);
+//        webSettings.setSaveFormData(true);
+//        webSettings.setEnableSmoothTransition(true);
+        WebviewCaching.cacheWebvie(webView, webSettings);
+        // TODO: webview caching
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl(url);
@@ -139,13 +154,13 @@ public class DetailNewsContentActivity extends AppCompatActivity implements AppB
     public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
 
         int maxScroll = appBarLayout.getTotalScrollRange();
-        float percentage = (float) Math.abs(i)/(float) maxScroll;
+        float percentage = (float) Math.abs(i) / (float) maxScroll;
 
-        if(percentage == 1f && isHideToolbarView){
+        if (percentage == 1f && isHideToolbarView) {
             date_behavior.setVisibility(View.GONE);
             titleAppBar.setVisibility(View.VISIBLE);
             isHideToolbarView = !isHideToolbarView;
-        }else if(percentage < 1f && !isHideToolbarView){
+        } else if (percentage < 1f && !isHideToolbarView) {
             date_behavior.setVisibility(View.VISIBLE);
             titleAppBar.setVisibility(View.GONE);
             isHideToolbarView = !isHideToolbarView;
@@ -153,13 +168,12 @@ public class DetailNewsContentActivity extends AppCompatActivity implements AppB
     }
 
 
-
     //_______OnClickOptions Listener
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_news , menu);
+        getMenuInflater().inflate(R.menu.menu_news, menu);
         return true;
     }
 
@@ -168,33 +182,31 @@ public class DetailNewsContentActivity extends AppCompatActivity implements AppB
 
         int id = item.getItemId();
 
-        if(id == R.id.view_web){
+        if (id == R.id.view_web) {
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(mUrl));
             startActivity(i);
             return true;
-        }
-        else if (id == R.id.share) {
+        } else if (id == R.id.share) {
 
             try {
                 Intent i = new Intent(Intent.ACTION_SEND);
                 i.setType("text/plan");
-                i.putExtra(Intent.EXTRA_SUBJECT , mSource);
-                String body = mTitle+"\n"+mUrl+"\n" + "Share from the news app" +"\n";
-                i.putExtra(Intent.EXTRA_TEXT , body);
-                startActivity(Intent.createChooser(i , "Share with :"));
+                i.putExtra(Intent.EXTRA_SUBJECT, mSource);
+                String body = mTitle + "\n" + mUrl + "\n" + "Share from the news app" + "\n";
+                i.putExtra(Intent.EXTRA_TEXT, body);
+                startActivity(Intent.createChooser(i, "Share with :"));
 
 
-            }catch (Exception e){
+            } catch (Exception e) {
 
-                Toast.makeText(DetailNewsContentActivity.this , "Sorry...\nCannot be Shared", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetailNewsContentActivity.this, "Sorry...\nCannot be Shared", Toast.LENGTH_SHORT).show();
 
             }
         }
 
         return super.onOptionsItemSelected(item);
     }
-
 
 
 }

@@ -97,52 +97,52 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-        if(currentUser == null){
-            openActivityLogin();
-        }else{
-            //setting username and email on navigation_drawer
-
-
-            String u_id = mAuth.getCurrentUser().getUid();
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference databaseReference = database.getReference("users").child(u_id);
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    String name = dataSnapshot.child("username").getValue().toString();
-                    username_nav.setText(name);
-                    String email = dataSnapshot.child("email").getValue().toString();
-                    user_email_nav.setText(email);
-                    //Log.d("T",name);
-
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-        }
-    }
-
-    //____________if not logged in__________
-
-    public void openActivityLogin(){
-        Intent intent = new Intent(MainActivity.this,SignInActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_left);
-        finish();
-
-    }
+//
+//
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//
+//        if(currentUser == null){
+//            openActivityLogin();
+//        }else{
+//            //setting username and email on navigation_drawer
+//
+//
+//            String u_id = mAuth.getCurrentUser().getUid();
+//            FirebaseDatabase database = FirebaseDatabase.getInstance();
+//            DatabaseReference databaseReference = database.getReference("users").child(u_id);
+//            databaseReference.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(DataSnapshot dataSnapshot) {
+//                    String name = dataSnapshot.child("username").getValue().toString();
+//                    username_nav.setText(name);
+//                    String email = dataSnapshot.child("email").getValue().toString();
+//                    user_email_nav.setText(email);
+//                    //Log.d("T",name);
+//
+//
+//                }
+//
+//                @Override
+//                public void onCancelled(DatabaseError databaseError) {
+//
+//                }
+//            });
+//        }
+//    }
+//
+//    //____________if not logged in__________
+//
+//    public void openActivityLogin(){
+//        Intent intent = new Intent(MainActivity.this,SignInActivity.class);
+//        startActivity(intent);
+//        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_left);
+//        finish();
+//
+//    }
 
 
     //_________Navigation Drawer Click Listener________
