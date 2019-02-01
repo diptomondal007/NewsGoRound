@@ -14,8 +14,15 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -75,17 +82,31 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-    private void registerUser(String username, String email, String password) {
+    private void registerUser(final String username, final String email,String password) {
+
 
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    progressDialog.dismiss();
-                    openActivitySignIn();
-                }else{
+                if(!task.isSuccessful()){
+
                     progressDialog.hide();
                     Toast.makeText(SignUpActivity.this,"Can not create account.Please check form and try again!",Toast.LENGTH_LONG).show();
+
+
+                }else{
+
+
+                    progressDialog.dismiss();
+                    String u_id = mAuth.getCurrentUser().getUid();
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef = database.getReference("users").child(u_id);
+                    Map values = new HashMap();
+                    values.put("email" , email);
+                    values.put("username" , username);
+
+                    myRef.setValue(values);
+                    openActivitySignIn();
 
                 }
             }

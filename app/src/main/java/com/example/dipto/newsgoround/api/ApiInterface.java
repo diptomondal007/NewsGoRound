@@ -23,4 +23,28 @@ public interface ApiInterface {
 
     );
 
+
+    @GET("top-headlines")
+    Call<News> getScienceNews(
+            @Query("country") String country,
+            @Query("category") String category,
+            @Query("apiKey") String apiKey
+    );
+
+    @GET("top-headlines")
+    Call<News> getTechNews(
+            @Query("country") String country,
+            @Query("category") String category,
+            @Query("apiKey") String apiKey
+    );
+
+    @GET("top-headlines")
+    Call<News> getSportsNews(
+            @Query("country") String country,
+            @Query("category") String category,
+            @Query("apiKey") String apiKey
+    );
+
+
+
 }

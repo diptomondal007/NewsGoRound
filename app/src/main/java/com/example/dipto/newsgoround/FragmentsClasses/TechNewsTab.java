@@ -110,6 +110,7 @@ public class TechNewsTab extends Fragment implements SwipeRefreshLayout.OnRefres
 
         ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         //final String country = Utils.getCountry();
+        String category = "technology";
         String source_country = "us";
         String language = "en";
 
@@ -117,7 +118,7 @@ public class TechNewsTab extends Fragment implements SwipeRefreshLayout.OnRefres
         if(keyWord.length() > 0 ){
             call = apiInterface.getNewsSearch(keyWord , language , "publishedAt",API_KEY);
         }else{
-            call = apiInterface.getNews(source_country , API_KEY);
+            call = apiInterface.getTechNews(source_country , category , API_KEY);
         }
 
 

@@ -105,14 +105,15 @@ public class ScienceNewsTab extends Fragment implements SwipeRefreshLayout.OnRef
 
         ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         //final String country = Utils.getCountry();
-        String source_country = "us";
+        String category = "science";
+        String country = "us";
         String language = "en";
 
         Call <News> call;
         if(keyWord.length() > 0 ){
             call = apiInterface.getNewsSearch(keyWord , language , "publishedAt",API_KEY);
         }else{
-            call = apiInterface.getNews(source_country , API_KEY);
+            call = apiInterface.getScienceNews(country , category , API_KEY);
         }
 
 

@@ -130,7 +130,7 @@ public class LocalNewsTab extends Fragment implements SwipeRefreshLayout.OnRefre
 
         ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         //final String country = Utils.getCountry();
-        String source_country = "us";
+        String source_country = "gb";
         String language = "en";
 
         Call<News> call;

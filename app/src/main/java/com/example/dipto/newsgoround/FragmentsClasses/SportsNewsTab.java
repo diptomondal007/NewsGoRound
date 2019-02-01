@@ -116,6 +116,7 @@ public class SportsNewsTab extends Fragment implements SwipeRefreshLayout.OnRefr
 
         ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         //final String country = Utils.getCountry();
+        String category ="sport";
         String source_country = "us";
         String language = "en";
 
@@ -123,7 +124,7 @@ public class SportsNewsTab extends Fragment implements SwipeRefreshLayout.OnRefr
         if(keyWord.length() > 0 ){
             call = apiInterface.getNewsSearch(keyWord , language , "publishedAt",API_KEY);
         }else{
-            call = apiInterface.getNews(source_country , API_KEY);
+            call = apiInterface.getSportsNews(source_country,category , API_KEY);
         }
 
 

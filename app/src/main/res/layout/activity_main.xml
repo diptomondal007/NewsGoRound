@@ -40,9 +40,9 @@
             app:tabGravity="fill"
             app:tabMode="scrollable"
             android:id="@+id/tabLayoutId"
-            android:background="#6c6f71"
-            app:tabIndicatorColor="#a506be"
-            app:tabTextColor="#0a6cb9" />
+            android:background="#f75514"
+            app:tabIndicatorColor="#01f7ff"
+            app:tabTextColor="#fdfdfd" />
 
         <android.support.v4.view.ViewPager
             android:layout_width="match_parent"
