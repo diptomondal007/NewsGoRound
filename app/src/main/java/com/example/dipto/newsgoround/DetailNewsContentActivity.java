@@ -1,19 +1,16 @@
 package com.example.dipto.newsgoround;
 
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -26,16 +23,19 @@ import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
-import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.Target;
-import com.example.dipto.newsgoround.caching.WebviewCaching;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 
 public class DetailNewsContentActivity extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
-
+    //
+    private String file = "cached_data";
+    //
     private ImageView imageView;
     private TextView appBar_tiitle, appBar_subtitle, date, time, title;
     private boolean isHideToolbarView = false;
@@ -122,9 +122,9 @@ public class DetailNewsContentActivity extends AppCompatActivity implements AppB
         webView.getSettings().setSupportZoom(true);
         webView.getSettings().setBuiltInZoomControls(true);
         webView.getSettings().setDisplayZoomControls(false);
-
-
         // TODO: cache
+        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        // finish cache
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl(url);
@@ -197,15 +197,49 @@ public class DetailNewsContentActivity extends AppCompatActivity implements AppB
                 Toast.makeText(DetailNewsContentActivity.this, "Sorry...\nCannot be Shared", Toast.LENGTH_SHORT).show();
 
             }
-
+// tonoy
         } else if (id == R.id.save_for_future) {
-            initWebView(mUrl);
-            WebviewCaching.cacheWebview(webView, webSettings);
-            Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
+            WriteIntoFile(mUrl);
+            Toast.makeText(this, "news saved", Toast.LENGTH_SHORT).show();
+
+
+        } else if (id == R.id.goto_save_news) {
+
+
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    // tonoy
+    public void WriteIntoFile(String mUrl) {
+        try {
+            FileOutputStream outputStream = openFileOutput(file, Context.MODE_PRIVATE);
+            outputStream.write(this.mUrl.getBytes());
+            outputStream.close();
+            Toast.makeText(this, "file saved", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public String ReadFromFile() {
+        String urls = "";
+        try {
+            FileInputStream inputStream = openFileInput(file);
+            int c;
+
+            while ((c = inputStream.read()) != -1) {
+                urls += Character.toString((char) c);
+            }
+            Toast.makeText(getBaseContext(), urls, Toast.LENGTH_SHORT).show();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return urls;
+    }
 
 }

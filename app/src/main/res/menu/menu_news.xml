@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <item
         android:id="@+id/share"
@@ -17,4 +18,9 @@
         android:icon="@drawable/ic_save_black_24dp"
         android:title="Save"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/goto_save_news"
+        android:icon="@drawable/ic_goto_save_news"
+        android:title="Goto to Saved News"
+        app:showAsAction="never" />
 </menu>

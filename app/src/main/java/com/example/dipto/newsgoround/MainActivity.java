@@ -33,7 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener   {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseAuth mAuth;
 
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FloatingSearchView mSearchView;
 
 
-    private TextView username_nav , user_email_nav;
+    private TextView username_nav, user_email_nav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +52,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tabLayout = findViewById(R.id.tabLayoutId);
         viewPager = findViewById(R.id.viewPagerId);
         ViewPageAdapterTabView adapter = new ViewPageAdapterTabView(getSupportFragmentManager());
-        adapter.AddFragment(new TopHeadLinesNewsTab(),  "Top Headlines");
-        adapter.AddFragment(new LocalNewsTab(),  "Local");
-        adapter.AddFragment(new ScienceNewsTab(),  "Science");
-        adapter.AddFragment(new TechNewsTab() , "Tech");
-        adapter.AddFragment(new SportsNewsTab() , "Sports");
-        adapter.AddFragment(new LiveScoreTab() , "Live Scores");
-
+        adapter.AddFragment(new TopHeadLinesNewsTab(), "Top Headlines");
+        adapter.AddFragment(new LocalNewsTab(), "Local");
+        adapter.AddFragment(new ScienceNewsTab(), "Science");
+        adapter.AddFragment(new TechNewsTab(), "Tech");
+        adapter.AddFragment(new SportsNewsTab(), "Sports");
+        adapter.AddFragment(new LiveScoreTab(), "Live Scores");
 
 
         viewPager.setAdapter(adapter);
@@ -77,22 +76,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mAuth = FirebaseAuth.getInstance();
 
 
-
         NavigationView navigationView = findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(this);
 
-        View navigation_header_view =  navigationView.getHeaderView(0);
+        View navigation_header_view = navigationView.getHeaderView(0);
 
 
         username_nav = navigation_header_view.findViewById(R.id.username_navigation_drawer);
         user_email_nav = navigation_header_view.findViewById(R.id.user_email_navigation_drawer);
-
-
-
-
-
-
-
 
 
     }
@@ -151,38 +142,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-        switch (menuItem.getItemId()){
+        switch (menuItem.getItemId()) {
             case R.id.nav_logOut:
-
                 FirebaseAuth.getInstance().signOut();
                 finish();
-                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
-                startActivity(new Intent(this , SignInActivity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                startActivity(new Intent(this, SignInActivity.class));
 
                 break;
             case R.id.nav_sportsPreferenceCustomize:
-                Intent intent = new Intent(MainActivity.this , SportsSettingsActivity.class);
-                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
-                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                new SportsNewsTab();
                 break;
             case R.id.nav_contact:
-                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
-                startActivity(new Intent(this , ContactUsActivity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                startActivity(new Intent(this, ContactUsActivity.class));
                 break;
-
-
 
 
         }
 
 
-
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
-
 
 
 }
